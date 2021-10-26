@@ -1,5 +1,4 @@
-import one from './modules/one';
-import two from './modules/two';
+import timer from './modules/timer';
 
-one();
-two();
+setInterval(timer, 1000, '30 october 2021');
+timer('30 october 2021');
