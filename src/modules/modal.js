@@ -3,6 +3,7 @@ const modal = () => {
     const buttons = document.querySelectorAll('.popup-btn');
     const closeBtn = modal.querySelector('.popup-close');
     const popup = modal.querySelector('.popup-content');
+    
     popup.style.opacity = '0';
     
     buttons.forEach(btn => {
