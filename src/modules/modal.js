@@ -1,7 +1,6 @@
 const modal = () => {
     const modal = document.querySelector('.popup');
     const buttons = document.querySelectorAll('.popup-btn');
-    const closeBtn = modal.querySelector('.popup-close');
     const popup = modal.querySelector('.popup-content');
     
     popup.style.opacity = '0';
@@ -20,12 +19,14 @@ const modal = () => {
             });
         });
         
-        closeBtn.addEventListener('click', () => {
-            popup.style.transition = '1s';
-            popup.style.opacity = '0';
-            setTimeout(() => {
-                modal.style.display = 'none';
-            }, 500);
+        modal.addEventListener('click', (e) => {
+            if (!e.target.closest('.popup-content') || e.target.classList.contains('popup-close')) {
+                popup.style.transition = '1s';
+                popup.style.opacity = '0';
+                setTimeout(() => {
+                    modal.style.display = 'none';
+                }, 500);
+            }
         });
         } else {
         buttons.forEach(btn => {
@@ -36,10 +37,12 @@ const modal = () => {
             });
         });
     
-        closeBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
-            popup.style.transition = '';
-            popup.style.opacity = '';
+        modal.addEventListener('click', (e) => {
+            if (!e.target.closest('.popup-content') || e.target.classList.contains('popup-close')) {
+                modal.style.display = 'none';
+                popup.style.transition = '';
+                popup.style.opacity = '';
+            }
         });
         }
     }
