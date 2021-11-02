@@ -1,12 +1,19 @@
 const menu = () => {
     const menu = document.querySelector('menu');
-    const body = document.querySelector('body');
+    const header = document.querySelector('.main-header');
+    
+    const handleMenu = () => {
+        menu.classList.toggle('active-menu');
+    };
 
-    body.addEventListener('click', (e) => {
+    header.addEventListener('click', (e) => {
         if (e.target.closest('.menu')) {
-            menu.classList.add('active-menu');
-        } else if (!e.target.closest('menu') || e.target.closest('ul > li > a') || e.target.closest('.close-btn')) {
-            menu.classList.remove('active-menu');
+            handleMenu();
+        }
+    });
+    menu.addEventListener('click', (e) => {
+        if (e.target.closest('.close-btn') || e.target.closest('ul > li > a')) {
+            handleMenu();
         }
     });
 };
