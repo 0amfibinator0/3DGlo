@@ -4,6 +4,7 @@ import modal from './modules/modal';
 import calculator from './modules/calculator';
 import validation from './modules/validation';
 import tabs from './modules/tabs';
+import slider from './modules/slider';
 
 setInterval(timer, 1000, '16 december 2021');
 timer('30 october 2021');
@@ -12,3 +13,4 @@ modal();
 calculator();
 validation();
 tabs();
+slider();
