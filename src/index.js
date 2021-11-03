@@ -10,7 +10,7 @@ setInterval(timer, 1000, '16 december 2021');
 timer('30 october 2021');
 menu();
 modal();
-calculator();
+calculator(100);
 validation();
 tabs();
 slider();
