@@ -8,21 +8,15 @@ const sending = () => {
             },
         }).then(response => response.json());
     };
-    const getData = () => {
-        const user = fetch('db.json')
+    async function getData() {
+        const user = await fetch('db.json')
             .then((response) => {
                 return response.json();
-            })
-            .then((data) => {
-                console.log(data);
-                return data;
             });
-        
-            console.log(user);
 
         sendData(JSON.stringify(user))
         .then(result => console.log(result));
-    };
+    }
     
     getData();
 };
