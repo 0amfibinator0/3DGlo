@@ -1,4 +1,6 @@
 const sending = () => {
+    const btn = document.querySelectorAll('.form-btn');
+
     const sendData = (data) => {
         return fetch('https://jsonplaceholder.typicode.com/posts', {
             method: 'POST',
@@ -17,8 +19,13 @@ const sending = () => {
         sendData(JSON.stringify(user))
         .then(result => console.log(result));
     }
-    
-    getData();
+    btn.forEach((el) => {
+        el.addEventListener('click', () => {
+            if (el.attributes.type) {
+                getData();
+            }
+        });
+    });
 };
 
 export default sending;
