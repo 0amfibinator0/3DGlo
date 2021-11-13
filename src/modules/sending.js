@@ -10,7 +10,7 @@ const sending = () => {
             },
         }).then(response => response.json());
     };
-    async function getData() {
+    async function getData(e) {
         const user = await fetch('db.json')
             .then((response) => {
                 return response.json();
@@ -20,7 +20,8 @@ const sending = () => {
         .then(result => console.log(result));
     }
     btn.forEach((el) => {
-        el.addEventListener('click', () => {
+        el.addEventListener('click', (e) => {
+            e.preventDefault();
             if (el.attributes.type) {
                 getData();
             }
