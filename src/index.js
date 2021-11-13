@@ -6,6 +6,7 @@ import validation from './modules/validation';
 import tabs from './modules/tabs';
 import slider from './modules/slider';
 import sending from './modules/sending';
+// import sendForm from './modules/sendForm';
 
 setInterval(timer, 1000, '16 december 2021');
 timer('30 october 2021');
@@ -15,4 +16,12 @@ calculator(100);
 validation();
 tabs();
 slider();
-sending();
+sending({
+    formId: 'form1',
+    someElem: [
+        {
+            type: 'block',
+            id: 'total'
+        }
+    ]
+});
