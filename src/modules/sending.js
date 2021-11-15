@@ -7,6 +7,7 @@ const sending = ({ firstFormId, secondFormId, thiedFormId, someElem = [] }) => {
     let firstTextInput = document.getElementById('form1-name');
     let secondTextInput = document.getElementById('form2-name');
     let thirdTextInput = document.getElementById('form3-name');
+    let fourthTextInput = document.getElementById('form2-message');
     let numInput = document.querySelectorAll('.form-phone');
     let emailInput = document.querySelectorAll('.form-email');
 
@@ -15,6 +16,7 @@ const sending = ({ firstFormId, secondFormId, thiedFormId, someElem = [] }) => {
             firstTextInput.value = '';
             secondTextInput.value = '';
             thirdTextInput.value = '';
+            fourthTextInput.value = '';
         
             numInput.forEach((el) => {
                 el.value = '';
@@ -89,6 +91,8 @@ const sending = ({ firstFormId, secondFormId, thiedFormId, someElem = [] }) => {
             } else {
                 formBody[elem.id] = element.value;
             }
+
+            clean();
         });
 
         sendData(formBody)
@@ -116,6 +120,8 @@ const sending = ({ firstFormId, secondFormId, thiedFormId, someElem = [] }) => {
             } else {
                 formBody[elem.id] = element.value;
             }
+
+            clean();
         });
 
         sendData(formBody)
