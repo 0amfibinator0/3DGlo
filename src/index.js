@@ -6,7 +6,7 @@ import validation from './modules/validation';
 import tabs from './modules/tabs';
 import slider from './modules/slider';
 import sending from './modules/sending';
-// import sendForm from './modules/sendForm';
+import userValidation from './modules/user-validation';
 
 setInterval(timer, 1000, '16 december 2021');
 timer('30 october 2021');
@@ -17,7 +17,9 @@ validation();
 tabs();
 slider();
 sending({
-    formId: 'form1',
+    firstFormId: 'form1',
+    secondFormId: 'form2',
+    thiedFormId: 'form3',
     someElem: [
         {
             type: 'block',
@@ -25,3 +27,4 @@ sending({
         }
     ]
 });
+userValidation();
