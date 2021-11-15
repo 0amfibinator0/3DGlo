@@ -4,6 +4,27 @@ const sending = ({ firstFormId, secondFormId, thiedFormId, someElem = [] }) => {
     const secondForm = document.getElementById(secondFormId);
     const thirdForm = document.getElementById(thiedFormId);
 
+    let firstTextInput = document.getElementById('form1-name');
+    let secondTextInput = document.getElementById('form2-name');
+    let thirdTextInput = document.getElementById('form3-name');
+    let numInput = document.querySelectorAll('.form-phone');
+    let emailInput = document.querySelectorAll('.form-email');
+
+    const clean = () => {
+        setTimeout(() => {
+            firstTextInput.value = '';
+            secondTextInput.value = '';
+            thirdTextInput.value = '';
+        
+            numInput.forEach((el) => {
+                el.value = '';
+            });
+            emailInput.forEach((el) => {
+                el.value = '';
+            });
+        }, 200);
+    };
+
     const sendData = (data = {}) => {
         return fetch('https://jsonplaceholder.typicode.com/posts', {
             method: 'POST',
@@ -46,6 +67,8 @@ const sending = ({ firstFormId, secondFormId, thiedFormId, someElem = [] }) => {
         sendData(formBody)
             .then(data => console.log(data));
 
+        clean();
+
         getData();
     });
     secondForm.addEventListener('submit', (event) => {
@@ -71,6 +94,8 @@ const sending = ({ firstFormId, secondFormId, thiedFormId, someElem = [] }) => {
         sendData(formBody)
             .then(data => console.log(data));
 
+        clean();
+
         getData();
     });
     thirdForm.addEventListener('submit', (event) => {
@@ -95,6 +120,8 @@ const sending = ({ firstFormId, secondFormId, thiedFormId, someElem = [] }) => {
 
         sendData(formBody)
             .then(data => console.log(data));
+
+        clean();
 
         getData();
     });
