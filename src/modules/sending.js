@@ -10,6 +10,9 @@ const sending = ({ firstFormId, secondFormId, thiedFormId, someElem = [] }) => {
     let fourthTextInput = document.getElementById('form2-message');
     let numInput = document.querySelectorAll('.form-phone');
     let emailInput = document.querySelectorAll('.form-email');
+    let firstEmail = document.querySelector('#form1-email');
+    let secondEmail = document.querySelector('#form2-email');
+    let thirdEmail = document.querySelector('#form3-email');
 
     const clean = () => {
         setTimeout(() => {
@@ -66,12 +69,14 @@ const sending = ({ firstFormId, secondFormId, thiedFormId, someElem = [] }) => {
             }
         });
 
-        sendData(formBody)
-            .then(data => console.log(data));
+        if (firstEmail.value === '') {
+            alert ('введите почту');
+        } else {
+            sendData(formBody)
+                .then(data => console.log(data));
 
-        clean();
-
-        getData();
+            clean();
+        }
     });
     secondForm.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -91,16 +96,16 @@ const sending = ({ firstFormId, secondFormId, thiedFormId, someElem = [] }) => {
             } else {
                 formBody[elem.id] = element.value;
             }
-
-            clean();
         });
 
-        sendData(formBody)
-            .then(data => console.log(data));
+        if (secondEmail.value === '') {
+            alert ('введите почту');
+        } else {
+            sendData(formBody)
+                .then(data => console.log(data));
 
-        clean();
-
-        getData();
+            clean();
+        }
     });
     thirdForm.addEventListener('submit', (event) => {
         event.preventDefault();
@@ -120,16 +125,16 @@ const sending = ({ firstFormId, secondFormId, thiedFormId, someElem = [] }) => {
             } else {
                 formBody[elem.id] = element.value;
             }
-
-            clean();
         });
 
-        sendData(formBody)
-            .then(data => console.log(data));
+        if (thirdEmail.value === '') {
+            alert ('введите почту');
+        } else {
+            sendData(formBody)
+                .then(data => console.log(data));
 
-        clean();
-
-        getData();
+            clean();
+        }
     });
 };
 
