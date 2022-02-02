@@ -7,6 +7,7 @@ import tabs from './modules/tabs';
 import slider from './modules/slider';
 import sending from './modules/sending';
 import userValidation from './modules/user-validation';
+import headerScroll from './modules/scroll';
 
 setInterval(timer, 1000, '16 december 2021');
 timer('30 october 2021');
@@ -28,3 +29,4 @@ sending({
     ]
 });
 userValidation();
+headerScroll();
