@@ -1,17 +1,16 @@
 const headerScroll = () => {
     const btn = document.getElementById('scroll-btn');
-    const link = document.querySelectorAll('#modal-link');
+    const list = document.getElementById('modal-links');
 
-    link.forEach((el) => {
-        el.addEventListener('click', function (e) {
-            e.preventDefault();
-            
-            const blockID = el.getAttribute('href');
+    list.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (e.target.classList.contains('modal-link')) {
+            const blockID = e.target.getAttribute('href');
             
             document.querySelector(blockID).scrollIntoView({
                 behavior: 'smooth',
             });
-        });
+        }
     });
 
     btn.addEventListener('click', function (e) {
