@@ -9,9 +9,11 @@ const calculator = (price = 100) => {
     let calcInput = document.querySelectorAll('.calc-block > input');
 
     calcInput.forEach((el) => {
-        el.addEventListener('input', () => {
-            el.value = el.value.replace(/[^\d]/, '');
-        });
+        el.onblur = () => {
+            if (el.value !== /[\d]/g) {
+                el.value = el.value.replace(/[^\d]/g, '');
+            }
+        };
     });
 
     const countCalc = () => {
