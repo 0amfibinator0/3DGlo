@@ -16,6 +16,21 @@ const calculator = (price = 100) => {
         };
     });
 
+    const outNum = (num) => {
+        let n = 0;
+        let t = Math.round(20/(num/10));
+        if (num === 0) {
+            return;
+        }
+        let interval = setInterval(() => {
+            n = n + 10;
+            if (n == num) {
+                clearInterval(interval);
+            }
+            total.textContent = n;
+        }, t);
+    };
+
     const countCalc = () => {
         const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
         const calcSquareValue = calcSquare.value;
@@ -40,7 +55,7 @@ const calculator = (price = 100) => {
             totalValue = 0;
         }
 
-        total.textContent = totalValue;
+        outNum(totalValue);
     };
 
     calcBlock.addEventListener('input', (e) => {
