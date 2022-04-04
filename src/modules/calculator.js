@@ -6,24 +6,22 @@ const calculator = (price = 100) => {
     const calcDay = document.querySelector('.calc-day');
     const total = document.getElementById('total');
 
-    let calcInput = document.querySelectorAll('.calc-block > input');
-
-    calcInput.forEach((el) => {
-        el.onblur = () => {
-            if (el.value !== /[\d]/g) {
-                el.value = el.value.replace(/[^\d]/g, '');
+    calcBlock.addEventListener('change', (e) => {
+        e.target.onblur = () => {
+            if (e.target.value !== /[\d]/g) {
+                e.target.value = e.target.value.replace(/[^\d]/g, '');
             }
         };
     });
 
     const outNum = (num) => {
         let n = 0;
-        let t = Math.round(20/(num/10));
+        let t = Math.round(20/(num/1));
         if (num === 0) {
             return;
         }
         let interval = setInterval(() => {
-            n = n + 10;
+            n = n + 20;
             if (n == num) {
                 clearInterval(interval);
             }
@@ -33,20 +31,20 @@ const calculator = (price = 100) => {
 
     const countCalc = () => {
         const calcTypeValue = +calcType.options[calcType.selectedIndex].value;
-        const calcSquareValue = calcSquare.value;
+        const calcSquareValue = +calcSquare.value;
 
         let totalValue = 0;
         let calcCountValue = 1;
         let calcDayValue = 1;
 
         if (calcCount.value > 1) {
-            calcCountValue += calcCount.value / 10;
+            calcCountValue += (calcCount.value - 1)/ 10;
         }
 
         if (calcDay.value && calcDay.value < 5) {
-            calcDayValue = 2;
+            calcDayValue *= 2;
         } else if (calcDay.value && calcDay.value < 10) {
-            calcDayValue = 1.5;
+            calcDayValue *= 1.5;
         }
 
         if (calcType.value && calcSquare.value) {
@@ -58,9 +56,8 @@ const calculator = (price = 100) => {
         outNum(totalValue);
     };
 
-    calcBlock.addEventListener('input', (e) => {
-        if (e.target === calcType || e.target === calcSquare ||
-            e.target === calcCount || e.target === calcDay) {
+    calcBlock.addEventListener('change', (e) => {
+        if (e.target.matches('select') || e.target.matches('input')) {
                 countCalc();
             }
     });
