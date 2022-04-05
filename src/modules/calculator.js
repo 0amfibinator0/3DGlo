@@ -1,3 +1,5 @@
+import { animate } from './helpers';
+
 const calculator = (price = 100) => {
     const calcBlock = document.querySelector('.calc-block');
     const calcType = document.querySelector('.calc-type');
@@ -15,18 +17,19 @@ const calculator = (price = 100) => {
     });
 
     const outNum = (num) => {
-        let n = 0;
-        let t = Math.round(20/(num/1));
-        if (num === 0) {
-            return;
-        }
-        let interval = setInterval(() => {
-            n = n + 20;
-            if (n == num) {
-                clearInterval(interval);
+        let n = 1;
+        animate({
+            duration: 1000,
+            timing(timeFraction) {
+                return timeFraction;
+            },
+            draw() {
+                do {
+                    n = n + 20;
+                    total.textContent = n;
+                } while (n <= num);
             }
-            total.textContent = n;
-        }, t);
+        });
     };
 
     const countCalc = () => {
@@ -52,8 +55,9 @@ const calculator = (price = 100) => {
         } else {
             totalValue = 0;
         }
-
-        outNum(totalValue);
+        if (totalValue !== 0) {
+            outNum(totalValue);
+        }
     };
 
     calcBlock.addEventListener('change', (e) => {
