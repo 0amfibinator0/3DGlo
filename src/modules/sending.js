@@ -13,6 +13,12 @@ const sending = ({ firstFormId, secondFormId, thiedFormId, someElem = [] }) => {
     let firstEmail = document.querySelector('#form1-email');
     let secondEmail = document.querySelector('#form2-email');
     let thirdEmail = document.querySelector('#form3-email');
+    let xhr = new XMLHttpRequest();
+    let url = "https://jsonplaceholder.typicode.com/posts";
+
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.responseType = 'json';
 
     const clean = () => {
         setTimeout(() => {
@@ -29,15 +35,10 @@ const sending = ({ firstFormId, secondFormId, thiedFormId, someElem = [] }) => {
             });
         }, 200);
     };
-
+    
     const sendData = (data = {}) => {
-        return fetch('https://jsonplaceholder.typicode.com/posts', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-                'Content-type': 'application/json',
-            },
-        }).then(response => response.json());
+        data = JSON.stringify(data);
+        xhr.send(data);
     };
     async function getData(e) {
         const user = await fetch('db.json')
