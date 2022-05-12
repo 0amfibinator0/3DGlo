@@ -3,6 +3,10 @@ const sending = ({ firstFormId, secondFormId, thiedFormId, someElem = [] }) => {
     const firstForm = document.getElementById(firstFormId);
     const secondForm = document.getElementById(secondFormId);
     const thirdForm = document.getElementById(thiedFormId);
+    const statusBlock = document.createElement('div');
+    const loadText = 'Загрузка...';
+    const errorText = 'Ошибка...';
+    const successText = 'Спасибо! Наш менеджер с вами свяжется!';
 
     let firstTextInput = document.getElementById('form1-name');
     let secondTextInput = document.getElementById('form2-name');
@@ -37,7 +41,14 @@ const sending = ({ firstFormId, secondFormId, thiedFormId, someElem = [] }) => {
             headers: {
                 'Content-type': 'application/json',
             },
-        }).then(response => response.json());
+        })
+        .then(response => response.json())
+        .then(data => {
+            statusBlock.textContent = successText;
+        })
+        .catch(error => {
+            statusBlock.textContent = errorText;
+        });
     };
     async function getData(e) {
         const user = await fetch('db.json')
@@ -54,6 +65,9 @@ const sending = ({ firstFormId, secondFormId, thiedFormId, someElem = [] }) => {
 
         const formData = new FormData(firstForm);
         const formBody = {} ;
+
+        statusBlock.innerHTML = '<div class="sk-spinner sk-spinner-pulse"></div>';
+        firstForm.append(statusBlock);
 
         formData.forEach((val, key)  => {
             formBody[key] = val;
